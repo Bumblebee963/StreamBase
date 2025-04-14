@@ -8,9 +8,12 @@ app.use(cors({
     credentials: true
 }))
 
+// data from json
 app.use(express.json({
     limit: "16kb"
 }))
+
+// data from url
 app.use(express.urlencoded({
     limit: "16kb",
     encoded : true
