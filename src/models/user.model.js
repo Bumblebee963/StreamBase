@@ -42,12 +42,12 @@ const userSchema= new Schema(
         ],
         password :{
             type : String,
-            // but why in string
+            
             required : [true,'Password is required']
         },
         refreshToken : {
             type : String
-            // ye kya hai bc
+            
         }
     },
     {
