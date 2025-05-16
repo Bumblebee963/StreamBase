@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
-// ye bearer token hai matlab jispeye hai usko data bhej sakte
+
 import bcrypt from 'bcrypt';
 const userSchema= new Schema(
     {
@@ -11,7 +11,7 @@ const userSchema= new Schema(
             lowercase : true,
             trim : true,
             index : true
-            //enables searching field that is makes userschema searchable in database
+            
     
         },
         email : {
@@ -55,7 +55,7 @@ const userSchema= new Schema(
     }
 )
 
-// pre hook mein arrow function se bhasad ho jayegi kyunki usko this nhi aata aur hume context dene padega to kahan se denge
+
 userSchema.pre("save", async function(next){
     if(!this.isModified("password")) return next();
 
