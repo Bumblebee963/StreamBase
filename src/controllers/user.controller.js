@@ -98,7 +98,7 @@ const loginUser = asyncHandler(async(req,res)=>{
         throw new ApiError(404,"user does not exist")
     }
 
-    const isPaasswordValid=await user.isPaasswordCorrect(password)
+    const isPaasswordValid=await user.isPasswordCorrect(password)
 
     if(!isPaasswordValid){
         throw new ApiError(401,"Invalid user credentials")
@@ -115,7 +115,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     }
 
     return res
-    .status(400)
+    .status(200)
     .cookie("accessToken",accessToken,options)
     .cookie("refreshToken",refreshToken,options)
     //if user wants to save locally
@@ -134,8 +134,8 @@ const logoutUser=asyncHandler(async(req,res)=>{
     User.findByIdAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: 1
             },
         },
         {
@@ -440,7 +440,6 @@ export {registerUser,
         refreshAccessToken,
         changeCurrentPassword,
         getCurrentUser,
-        updateAccountDetails,
         updateAccountDetails,
         updateUserAvatar,
         updateUserCoverImage,
